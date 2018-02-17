@@ -1,0 +1,219 @@
+
+<div class="col-lg-12 margin-top green">
+<!--<h3>{{title}}</h3>-->
+
+  <!--/col-->
+  <div class="col-lg-8 offset-lg-2 col-md-12 margin-top padding-bottom">
+    <span class="anchor" id="formUserEdit"></span>
+
+
+    <!-- form user info -->
+    <div class="card card-outline-secondary">
+        <div class="card-header">
+            <h3 class="mb-0">Registro de nuevo socio</h3>
+        </div>
+
+        <div class="card-block">
+
+          <form #newMemberForm="ngForm" (ngSubmit)="onSubmit()">
+
+
+          <div class="row">
+
+              <span class="input input--jiro">
+                <input class="input__field input__field--jiro" type="text"
+                name="name" #name="ngModel" [(ngModel)]="member.name" required/>
+                <label class="input__label input__label--jiro" for="name">
+                  <span class="input__label-content input__label-content--jiro">
+
+                    <span class="required" *ngIf="!name.valid && name.touched">
+                      El
+                    </span>
+                    Nombre
+                    <span class="required" *ngIf="!name.valid && name.touched">
+                      es obligatorio
+                    </span>
+
+                  </span>
+                </label>
+              </span>
+
+              <span class="input input--jiro">
+                <input class="input__field input__field--jiro" type="text"
+                name="surname" #surname="ngModel" [(ngModel)]="member.surname" required/>
+                <label class="input__label input__label--jiro" for="surname">
+                  <span class="input__label-content input__label-content--jiro">
+
+                  <span class="required" *ngIf="!surname.valid && surname.touched">
+                    Los
+                  </span>
+                      Apellidos
+                  <span class="required" *ngIf="!surname.valid && surname.touched">
+                      son obligatorios
+                  </span>
+
+                  </span>
+                </label>
+              </span>
+
+          </div>
+
+          <div class="row">
+
+            <span class="input input--jiro">
+
+              <input class="input__field input__field--jiro" type="text"
+              name="email" #email="ngModel" [(ngModel)]="member.email" required/>
+
+              <label class="input__label input__label--jiro" for="email">
+                <span class="input__label-content input__label-content--jiro">
+
+                <span class="required" *ngIf="!email.valid && email.touched">
+                  El
+                </span>
+                  Correo electrónico
+                  <span class="required" *ngIf="!email.valid && email.touched">
+                  es obligatorio
+                  </span>
+                </span>
+              </label>
+
+            </span>
+
+            <span class="input input--jiro">
+
+                <input class="input__field input__field--jiro" type="text"
+                name="birth" #birth="ngModel" [(ngModel)]="member.birth" required/>
+
+                <label class="input__label input__label--jiro" for="birth">
+                  <span class="input__label-content input__label-content--jiro">
+
+                  <span class="required" *ngIf="!birth.valid && birth.touched">
+                    La
+                  </span>
+                    Fecha de nacimiento
+                    <span class="required" *ngIf="!birth.valid && birth.touched">
+                      es obligatoria
+                    </span>
+                  </span>
+                </label>
+
+            </span>
+
+          </div>
+
+          <div class="row">
+
+              <span class="input input--jiro">
+
+                <input class="input__field input__field--jiro" type="text"
+                name="gender" #gender="ngModel" [(ngModel)]="member.gender" required/>
+
+                <label class="input__label input__label--jiro" for="gender">
+                  <span class="input__label-content input__label-content--jiro">
+
+                  <span class="required" *ngIf="!gender.valid && gender.touched">
+                    El
+                  </span>
+                    Género
+                    <span class="required" *ngIf="!gender.valid && gender.touched">
+                      es obligatorio
+                    </span>
+                  </span>
+                </label>
+
+              </span>
+
+
+            <span class="input input--jiro">
+
+              <input class="input__field input__field--jiro" type="text"
+              name="numberesncard" #numberesncard="ngModel" [(ngModel)]="member.numberesncard" required/>
+
+              <label class="input__label input__label--jiro" for="numberesncard">
+                <span class="input__label-content input__label-content--jiro">
+
+                <span class="required" *ngIf="!numberesncard.valid && numberesncard.touched">
+                  El
+                </span>
+                  Nº ESNcard
+                  <span class="required" *ngIf="!numberesncard.valid && numberesncard.touched">
+                    es obligatorio
+                  </span>
+                </span>
+              </label>
+
+            </span>
+
+          </div>
+
+            <div *ngIf="is_edit && member.image">
+              <div class="image_for_edit">
+                <img src="{{ url + 'get-image-member/' + member.image }}"/>
+              </div>
+            </div>
+
+            <br>
+            <p>
+              <input type="file" id="file" class="inputfile inputfile-2"
+              (change)="fileChangeEvent($event)" />
+              <label for="file">
+                <fa name="upload"></fa>
+                <span style="margin-left: 10px;">Subir imagen de perfil</span>
+              </label>
+            </p>
+
+            <span class="textarea input--jiro" style="width:100% !important;">
+
+              <textarea class="input__field input__field--jiro" type="text"
+              name="comments" #comments="ngModel" [(ngModel)]="member.comments"></textarea>
+
+              <label class="input__label input__label--jiro" for="comments">
+                <span class="input__label-content input__label-content--jiro">
+                  Comentarios, alergias, intolerancias, etc.
+                </span>
+              </label>
+
+            </span>
+
+            <!--<p>
+              <label>Comentarios, alergias, intolerancias, etc.</label>
+              <textarea name="comments" #comments="ngModel" [(ngModel)]="member.comments" class="form-control" required></textarea>
+            </p>-->
+            <div class="btn-group">
+              <label class="btn btn-success active btn-checkbox form-group">
+        				<input data-toggle="toggle" type="checkbox" autocomplete="off" checked name="conditions" #conditions="ngModel" [(ngModel)]="member.conditions" required/>
+        				<span><fa name="check"></fa></span>
+        			</label>
+              <label class="btn-group-label">Acepto las condiciones de uso</label>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-3">
+                <input type="submit" [disabled]="!newMemberForm.form.valid" id="submit" class="inputfile inputfile-2"/>
+
+                <label for="submit">
+                  <fa name="user-plus"></fa>
+                  <span style="margin-left: 10px;">Registrar</span>
+                </label>
+              </div>
+
+              <div class="col-lg-6 alert alert-success" *ngIf="status == 'success'">
+                Te has registrado correctamente
+              </div>
+
+              <div class="col-lg-6 alert alert-danger" *ngIf="status == 'error'">
+                Error en el registro
+              </div>
+
+            </div>
+
+<input type="submit" value="{{title}}" class="btn btn-primary" [disabled]="!newMemberForm.form.valid"/>
+
+          </form>
+
+        </div>
+    </div>
+
+  </div>
+</div>

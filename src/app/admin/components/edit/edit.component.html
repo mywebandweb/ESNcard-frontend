@@ -1,0 +1,134 @@
+<div class="col-lg-12 margin-top">
+<!--<h3>{{title}}</h3>-->
+
+  <!--/col-->
+  <div class="col-lg-8 offset-lg-2 col-md-12 margin-top padding-bottom">
+    <span class="anchor" id="formUserEdit"></span>
+
+
+    <!-- form user info -->
+    <div class="card card-outline-secondary">
+        <div class="card-header">
+            <h3 class="mb-0">Registro de nuevo socio</h3>
+        </div>
+
+        <div class="card-block">
+
+          <form #formMemberEditForm="ngForm" (ngSubmit)="onSubmit()">
+
+
+            <div class="row">
+              <p class="col-sm-6">
+                <label>Nombre</label>
+                <input type="text" name="name" #name="ngModel" [(ngModel)]="member.name" class="form-control" required/>
+                <span *ngIf="!name.valid && name.touched">
+                  El nombre es obligatorio
+                </span>
+              </p>
+
+              <p class="col-sm-6">
+                <label>Apellidos</label>
+                <input type="text" name="surname" #surname="ngModel" [(ngModel)]="member.surname" class="form-control" required/>
+                <span *ngIf="!surname.valid && surname.touched">
+                  Los apellidos son obligatorios
+                </span>
+              </p>
+            </div>
+
+            <p>
+              <label>Correo electrónico</label>
+              <input type="text" name="email" #email="ngModel" [(ngModel)]="member.email" class="form-control" required/>
+              <span *ngIf="!email.valid && email.touched">
+                El correo electrónico es obligatorio
+              </span>
+            </p>
+
+            <div class="row">
+              <p class="col-sm-6">
+                <label>Fecha de nacimiento</label>
+                <input type="text" name="birth" #birth="ngModel" [(ngModel)]="member.birth" class="form-control" required/>
+                <span *ngIf="!birth.valid && birth.touched">
+                  La edad es obligatoria
+                </span>
+              </p>
+
+              <p class="col-sm-6">
+                <label>Género</label>
+                <select name="gender" #gender="ngModel" [(ngModel)]="member.gender" class="form-control" required>
+                  <option value="male">Hombre</option>
+                  <option value="female">Mujer</option>
+                </select>
+                <span *ngIf="!gender.valid && gender.touched">
+                  El género es obligatorio
+                </span>
+              </p>
+            </div>
+
+            <p>
+              <label>Nº ESNcard</label>
+              <input type="text" name="numberesncard" #numberesncard="ngModel" [(ngModel)]="member.numberesncard" class="form-control" required/>
+              <span *ngIf="!numberesncard.valid && numberesncard.touched">
+                El número de tu ESNcard es obligatorio
+              </span>
+            </p>
+
+            <div *ngIf="is_edit && member.image">
+              <div class="image_for_edit">
+                <img src="{{ url + 'get-image-member/' + member.image }}"/>
+              </div>
+            </div>
+
+            <p>
+              <input type="file" id="file-1" class="inputfile inputfile-2"
+              (change)="fileChangeEvent($event)" />
+              <label for="file-1">
+                <fa name="upload"></fa>
+                <span style="margin-left: 10px;">Subir imagen de perfil</span>
+              </label>
+            </p>
+
+            <p>
+              <label>Comentarios, alergias, intolerancias, etc.</label>
+              <textarea name="comments" #comments="ngModel" [(ngModel)]="member.comments" class="form-control" required></textarea>
+              <span *ngIf="!comments.valid && comments.touched">
+                El número de tu ESNcard es obligatorio
+              </span>
+            </p>
+
+            <p>
+              <input type="checkbox" name="conditions" #conditions="ngModel" [(ngModel)]="member.conditions" class="checkbox" required>
+              <span class="checkmark"></span>
+              <label>Acepto las condiciones de uso</label>
+            </p>
+
+            <input type="submit" value="{{title}}" class="btn btn-success"/>
+          </form>
+
+        </div>
+    </div>
+
+  </div>
+</div>
+
+
+<section class="content bgcolor-7">
+  <h2>Jiro</h2>
+  <span class="input input--jiro">
+    <input class="input__field input__field--jiro" type="text" id="input-10" />
+    <label class="input__label input__label--jiro" for="input-10">
+      <span class="input__label-content input__label-content--jiro">Cat's Name</span>
+    </label>
+  </span>
+  <span class="input input--jiro">
+    <input class="input__field input__field--jiro" type="text" id="input-11" />
+    <label class="input__label input__label--jiro" for="input-11">
+      <span class="input__label-content input__label-content--jiro">Dog's Name</span>
+    </label>
+  </span>
+  <span class="input input--jiro">
+    <input class="input__field input__field--jiro" type="text" id="input-12" />
+    <label class="input__label input__label--jiro" for="input-12">
+      <span class="input__label-content input__label-content--jiro">Hamster's Name</span>
+    </label>
+  </span>
+</section>

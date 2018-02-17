@@ -1,0 +1,17 @@
+<div class="member-box col-lg-11" *ngIf="member">
+  <div id="member-head-card" class="col-lg-4 pull-left">
+    <img src="{{url + 'get-image-member/' +member.image}}" style="width:300px;"/>
+  </div>
+  <div class="member-data col-lg-7 pull-left">
+    <h1>{{member.name}}</h1>
+    <p>{{member.user.name + ' ' + member.user.surname}}</p>
+    <p>{{member.year}}</p>
+    <p>{{member.description}}</p>
+
+    <a class="btn btn-sm btn-success">
+      <fa name="arrow-circle-right"></fa>
+      Confirmo ser este usuario
+    </a>
+
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<!--<div class="col-lg-4">
+  <h3>{{title}}</h3>
+  <div class="side-menu-container" data-example-id="sample-nav-stacked">
+    <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
+      <li role="presentation" [routerLinkActive]="['active']">
+        <a [routerLink]="['crear']">Añadir</a>
+      </li>
+      <li role="presentation" [routerLinkActive]="['active']">
+        <a [routerLink]="['editar']">Editar</a>
+      </li>
+      <li role="presentation" [routerLinkActive]="['active']">
+        <a [routerLink]="['list']">Listado</a>
+      </li>
+    </ul>
+  </div>
+</div>-->
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <!-- Sidebar Header -->
+      <div class="sidebar-header">
+        <h3>Panel de Administración</h3>
+      </div>
+
+      <!-- Sidebar Links -->
+      <ul class="list-unstyled components">
+        <li [routerLinkActive]="['active']"><a [routerLink]="['crear']">Crear</a></li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['editar']">Editar</a></li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['list']">Listado</a></li>
+        <li [routerLinkActive]="['active']"><a [routerLink]="['dashboard-product']">Productos</a></li>
+      </ul>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="col-lg-8 margin-top">
+      <router-outlet></router-outlet>
+    </div>
+
+</div>

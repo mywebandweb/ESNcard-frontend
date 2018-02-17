@@ -1,0 +1,27 @@
+.card-product{
+    padding: 15px;
+}
+
+.card-product .inner{
+  padding: 25px;
+  border-color: #54b88f;
+  box-shadow: 5px 10px 18px #D3D3D3;
+}
+
+.card-product .btn-primary{
+  background-color: #54b88f;
+  border-color: #54b88f;
+}
+
+.card-product .card-header{
+  box-shadow: 5px 5px 30px #D3D3D3;
+}
+
+.btn fa {
+  padding-right: 6px;
+}
+
+.card-product .btn-group .btn-secondary {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}

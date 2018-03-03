@@ -7,14 +7,15 @@ import { UserService } from '../../services/user.service';
 import { UploadService } from '../../services/upload.service';
 import { Member } from '../../models/member';
 
-
 @Component({
   selector: 'nou-soci',
   templateUrl: './nou-soci.component.html',
   styleUrls: ['./nou-soci.component.css'],
   providers: [UserService, MemberService, UploadService]
 })
-export class NouSociComponent implements OnInit{
+
+export class NouSociComponent implements OnInit {
+
   public title: string;
   public member: Member;
   public identity;
@@ -22,6 +23,8 @@ export class NouSociComponent implements OnInit{
   public url: string;
   public status;
   public is_edit;
+  public id;
+
 
   constructor(
     private _route: ActivatedRoute,
@@ -29,13 +32,22 @@ export class NouSociComponent implements OnInit{
     private _userService: UserService,
     private _memberService: MemberService,
     private _uploadService: UploadService
+
   ){
     this.is_edit = true;
     this.title = 'Registrar';
     this.member = new Member('','','','','','','','', false, '', '');
     this.identity = this._userService.getIdentity();
-    this.token = this._userService.getToken();
+    this.token = GLOBAL.getToken();
     this.url = GLOBAL.url;
+  }
+
+  addClass(id: any) {
+     this.id = id;
+  }
+
+  removeClass(id: any) {
+     this.id = 0;
   }
 
   ngOnInit(){

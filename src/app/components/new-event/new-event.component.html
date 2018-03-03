@@ -1,185 +1,114 @@
+<div class="main-content" style="background-size: auto 900px;background-image: url('../../../assets/img/img4.jpg')">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 offset-lg-1">
+            <div class="card">
+                <div class="card-header" data-background-color="purple">
+                    <h4 class="title">Nuevo evento</h4>
+                    <p class="category">Completa toda la información del evento</p>
+                </div>
+                <div class="card-content">
+                    <form #newMemberForm="ngForm" (ngSubmit)="onSubmit()">
 
-<div class="col-lg-12 margin-top green">
-<!--<h3>{{title}}</h3>-->
+                        <div class="row">
+                            <div class="col-md-6 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="member.name" required/>
+                                    <label class="control-label">Nombre</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="text" class="form-control" name="surname" #surname="ngModel" [(ngModel)]="member.surname" required/>
+                                    <label class="control-label">Apellidos</label>
+                                </div>
+                            </div>
+                        </div>
 
-  <!--/col-->
-  <div class="col-lg-8 offset-lg-2 col-md-12 margin-top padding-bottom">
-    <span class="anchor" id="newEventForm"></span>
+                        <div class="row">
+                            <div class="col-md-12 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="member.email" required/>
+                                    <label class="control-label">Correo electrónico</label>
+                                </div>
+                            </div>
 
+                        </div>
 
-    <!-- form user info -->
-    <div class="card card-outline-secondary">
-        <div class="card-header">
-            <h3 class="mb-0">Añadir un nuevo evento</h3>
-        </div>
+                        <div class="row">
+                            <div class="col-md-6 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="text" class="form-control" name="birth" #birth="ngModel" [(ngModel)]="member.birth" required/>
+                                    <label class="control-label">Fecha de nacimiento</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="text" class="form-control" name="gender" #gender="ngModel" [(ngModel)]="member.gender" required/>
+                                    <label class="control-label">Género</label>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="card-block">
+                        <div class="row">
+                            <div class="col-md-12 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="text" class="form-control" name="numberesncard" #numberesncard="ngModel" [(ngModel)]="member.numberesncard" required/>
+                                    <label class="control-label">Nº ESNcard</label>
+                                </div>
+                            </div>
+                        </div>
 
-          <form #newEventForm="ngForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
 
+                            <div *ngIf="is_edit && member.image">
+                              <div class="image_for_edit">
+                                <img src="{{ url + 'get-image-member/' + member.image }}"/>
+                              </div>
+                            </div>
 
-          <div class="row">
+                            <br>
+                            <div class="col-md-12" style="padding-left: 15px; margin-top: 15px;">
+                              <input type="file" id="file" style="display:none;"
+                               (change)="fileChangeEvent($event)" />
+                              <label style="color:#9c27b0;" for="file">
+                                <fa name="upload"></fa>
+                                <span style="margin-left: 10px;">Subir imagen de perfil</span>
+                              </label>
+                            </div>
 
-              <span class="input input--jiro">
-                <input class="input__field input__field--jiro" type="text"
-                name="name" #name="ngModel" [(ngModel)]="event.name" required/>
-                <label class="input__label input__label--jiro" for="name">
-                  <span class="input__label-content input__label-content--jiro">
+                        </div>
 
-                    <span class="required" *ngIf="!name.valid && name.touched">
-                      El
-                    </span>
-                    Nombre del evento
-                    <span class="required" *ngIf="!name.valid && name.touched">
-                      es obligatorio
-                    </span>
-
-                  </span>
-                </label>
-              </span>
-
-              <span class="input input--jiro">
-                <input class="input__field input__field--jiro" type="text"
-                name="places" #places="ngModel" [(ngModel)]="event.places" required/>
-                <label class="input__label input__label--jiro" for="places">
-                  <span class="input__label-content input__label-content--jiro">
-
-                    <span class="required" *ngIf="!places.valid && places.touched">
-                      El
-                    </span>
-                    Número máximo de plazas
-                    <span class="required" *ngIf="!places.valid && places.touched">
-                      es obligatorio
-                    </span>
-
-                  </span>
-                </label>
-              </span>
-
-
-
-          </div>
-
-          <div class="row">
-
-            <span class="input input--jiro">
-
-              <input class="input__field input__field--jiro" type="text"
-              name="initial_date" #initial_date="ngModel" [(ngModel)]="event.initial_date" required/>
-
-              <label class="input__label input__label--jiro" for="initial_date">
-                <span class="input__label-content input__label-content--jiro">
-
-                <span class="required" *ngIf="!initial_date.valid && initial_date.touched">
-                  El
-                </span>
-                  Día inicial del evento
-                  <span class="required" *ngIf="!initial_date.valid && initial_date.touched">
-                  es obligatorio
-                  </span>
-                </span>
-              </label>
-
-            </span>
-
-            <span class="input input--jiro">
-
-                <input class="input__field input__field--jiro" type="text"
-                name="expiration_date" #expiration_date="ngModel" [(ngModel)]="event.expiration_date" required/>
-
-                <label class="input__label input__label--jiro" for="expiration_date">
-                  <span class="input__label-content input__label-content--jiro">
-
-                  <span class="required" *ngIf="!expiration_date.valid && expiration_date.touched">
-                    La
-                  </span>
-                    Día final del evento
-                    <span class="required" *ngIf="!expiration_date.valid && expiration_date.touched">
-                      es obligatoria
-                    </span>
-                  </span>
-                </label>
-
-            </span>
-
-          </div>
-
-          <div class="row">
-
-              <span class="input input--jiro">
-
-                <input class="input__field input__field--jiro" type="text"
-                name="price_esncard" #price_esncard="ngModel" [(ngModel)]="event.price_esncard" required/>
-
-                <label class="input__label input__label--jiro" for="price_esncard">
-                  <span class="input__label-content input__label-content--jiro">
-
-                  <span class="required" *ngIf="!price_esncard.valid && price_esncard.touched">
-                    El
-                  </span>
-                    Precio con ESNcard
-                    <span class="required" *ngIf="!price_esncard.valid && price_esncard.touched">
-                      es obligatorio
-                    </span>
-                  </span>
-                </label>
-
-              </span>
+                        <div class="row">
+                            <div class="col-md-12 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <textarea mdbActive type="text" class="form-control md-textarea"  name="comments" #comments="ngModel" [(ngModel)]="member.comments" rows="5"></textarea>
+                                    <label class="control-label">Comentarios, alergias, intolerancias, etc.</label>
+                                </div>
+                            </div>
+                        </div>
 
 
-            <span class="input input--jiro">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input style="width:15px; height:15px;" data-toggle="toggle" type="checkbox" autocomplete="off" checked name="conditions" #conditions="ngModel" [(ngModel)]="member.conditions" required/>
+                                    <label>Acepto las condiciones de uso</label>
+                                </div>
+                            </div>
+                        </div>
 
-              <input class="input__field input__field--jiro" type="text"
-              name="price_no_esncard" #price_no_esncard="ngModel" [(ngModel)]="event.price_no_esncard" required/>
 
-              <label class="input__label input__label--jiro" for="price_no_esncard">
-                <span class="input__label-content input__label-content--jiro">
-
-                <span class="required" *ngIf="!price_no_esncard.valid && price_no_esncard.touched">
-                  El
-                </span>
-                  Precio sin ESNcard
-                  <span class="required" *ngIf="!price_no_esncard.valid && price_no_esncard.touched">
-                    es obligatorio
-                  </span>
-                </span>
-              </label>
-
-            </span>
-
-          </div>
-
-            <!--<p>
-              <label>Comentarios, alergias, intolerancias, etc.</label>
-              <textarea name="comments" #comments="ngModel" [(ngModel)]="member.comments" class="form-control" required></textarea>
-            </p>-->
-
-            <div class="row">
-              <div class="col-lg-3">
-                <input type="submit" [disabled]="!newEventForm.form.valid" id="submit" class="inputfile inputfile-2"/>
-
-                <label for="submit">
-                  <fa name="plus"></fa>
-                  <span style="margin-left: 10px;">Crear Evento</span>
-                </label>
-              </div>
-
-              <div class="col-lg-6 alert alert-success" *ngIf="status == 'success'">
-                Has creado el evento correctamente
-              </div>
-
-              <div class="col-lg-6 alert alert-danger" *ngIf="status == 'error'">
-                Error en crear el evento
-              </div>
-
+                        <button type="submit" class="btn btn-danger pull-right" data-background-color="purple">Registrar Usuario</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
             </div>
-
-            <input type="submit" value="{{title}}" class="btn btn-primary" [disabled]="!newEventForm.form.valid"/>
-
-          </form>
-
         </div>
-    </div>
 
-  </div>
+    </div>
+</div>
+
+
+
 </div>

@@ -25,7 +25,7 @@ export class UserEditComponent implements OnInit{
   ){
     this.title = 'Actualizar mis datos';
     this.identity = this._userService.getIdentity();
-    this.token = this._userService.getToken();
+    this.token = GLOBAL.getToken();
     this.user = this.identity;
     this.url = GLOBAL.url;
   }
@@ -48,7 +48,7 @@ export class UserEditComponent implements OnInit{
           .then((result: any) => {
             this.user.image = result.image;
             localStorage.setItem('identity', JSON.stringify(this.user));
-            console.log(this.user);            
+            console.log(this.user);
           });
 
         }

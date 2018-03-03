@@ -25,7 +25,7 @@ export class VentaComponent {
     private _userService: UserService
   ){
     this.title = 'Venta Tickets';
-    this.token = this._userService.getToken();
+    this.token = GLOBAL.getToken();
   }
 
   ngOnInit(){

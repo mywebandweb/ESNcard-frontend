@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
+import { GLOBAL } from '../../services/global';
 
 @Component({
   selector: 'login',
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit{
   ngOnInit(){
     console.log('login.component cargado!');
     console.log(this._userService.getIdentity());
-    console.log(this._userService.getToken());
+    console.log(GLOBAL.getToken());
   }
 
   onSubmit(){

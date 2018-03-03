@@ -16,3 +16,12 @@ export class SearchESNcardPipe implements PipeTransform{
     });
   }
 }
+
+export class SearchOnListPipe implements PipeTransform{
+    transform(id:number, items:any):any{
+        if(!id || !items.length){return null;}
+        return items.find(function(item){
+            return item._id === id;
+        })
+    };
+}

@@ -32,7 +32,7 @@ export class EditComponent implements OnInit{
     this.title = 'Editar';
     this.member = new Member('','','','','','','','', false, '', '');
     this.identity = this._userService.getIdentity();
-    this.token = this._userService.getToken();
+    this.token = GLOBAL.getToken();
     this.url = GLOBAL.url;
   }
 

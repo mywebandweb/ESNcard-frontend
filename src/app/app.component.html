@@ -1,103 +1,14 @@
-<!-- NavBar - Menu -->
-<nav class="navbar navbar-toggleable-md navbar-light no-padding-navbar">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand">Erasmus App</a>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <!-- Botón Nuevo socio -->
-      <li class="nav-item" [routerLink]="['/soci']" [routerLinkActive]="['active']">
-        <a class="nav-link" [routerLink]="['/soci']" [routerLinkActive]="['active']">
-          <fa name="user"></fa>
-          Nuevo Socio
-        </a>
-      </li>
-      <!-- Botón Nueva venta -->
-      <li class="nav-item" [routerLink]="['/venta']" [routerLinkActive]="['active']">
-        <a class="nav-link" [routerLink]="['/venta']" [routerLinkActive]="['active']">
-            <fa name="ticket"></fa>
-            Nueva Venta
-        </a>
-      </li>
-      <!-- Botón Panel de Administración -->
-      <li class="nav-item" [routerLink]="['/admin-panel']" [routerLinkActive]="['active']">
-        <a class="nav-link" [routerLink]="['/admin-panel']" [routerLinkActive]="['active']">
-            <fa name="bar-chart"></fa>
-            Panel de administración
-        </a>
-      </li>
-      <!-- Botón Nuevo evento -->
-      <li class="nav-item" [routerLink]="['/nuevo-evento']" [routerLinkActive]="['active']">
-        <a class="nav-link" [routerLink]="['/nuevo-evento']" [routerLinkActive]="['active']">
-            <fa name="calendar"></fa>
-            Nuevo evento
-        </a>
-      </li>
-    </ul>
-
-    <ul class="nav navbar-nav navbar-right" *ngIf="!identity">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/registro']" [routerLinkActive]="['active']">
-          <fa name="user"></fa>
-          Registro
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="['active']">
-          <fa name="sign-in"></fa>
-          Login
-        </a>
-      </li>
-    </ul>
-
-    <ul class="nav navbar-nav navbar-right pointer nav-link" *ngIf="identity">
-        <div class="avatar">
-            <img src="{{ url + 'get-image-file/' + identity.image }}" style="width:40px;"/>
+<div class="wrapper">
+    <div class="sidebar" data-color='purple' data-image="">
+        <app-sidebar></app-sidebar>
+        <!--<div class="sidebar-background" style="background-image: url(../assets/img/sidebar-4.jpg)"></div>-->
+    </div>
+    <div class="main-panel">
+        <app-navbar></app-navbar>
+        <router-outlet></router-outlet>
+        <div *ngIf="isMaps('maps')">
+            <app-footer></app-footer>
         </div>
-        <div class="dropdown">
-          <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="false" aria-expanded="true">
-            {{identity.name}} {{identity.surname}}
-          </div>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-
-            <a class="dropdown-item" *ngIf="identity && identity.role == 'ROLE_ADMIN'"
-            [routerLink]="['/admin-panel']">
-              <fa name="tasks"></fa>
-              Administración
-            </a>
-
-            <a class="dropdown-item" [routerLink]="['/mis-datos']">
-              <fa name="cog"></fa>
-              <a>Mis datos</a>
-            </a>
-
-            <a class="dropdown-item" (click)="logout()">
-              <fa name="sign-out"></fa>
-              <a>Salir</a>
-            </a>
-
-          </div>
-        </div>
-    </ul>
-
-
-
-
-
-
-
-    <!-- Cercador
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Buscar">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-    </form>
-    -->
-  </div>
-</nav>
-
-<div class="bg-faded">
-<router-outlet></router-outlet>
+    </div>
 </div>

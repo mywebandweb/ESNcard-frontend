@@ -31,9 +31,9 @@ export class NewEventComponent implements OnInit{
   ){
     this.is_edit = true;
     this.title = 'Crear Evento';
-    this.event = new Event('','','','',null,null,null,null,'');
+    this.event = new Event();
     this.identity = this._userService.getIdentity();
-    this.token = this._userService.getToken();
+    this.token = GLOBAL.getToken();
     this.url = GLOBAL.url;
   }
 

@@ -25,7 +25,7 @@ export class ListComponent implements OnInit{
     private _userService: UserService
   ){
     this.title = 'Listado';
-    this.token = this._userService.getToken();
+    this.token = GLOBAL.getToken();
   }
 
   ngOnInit(){

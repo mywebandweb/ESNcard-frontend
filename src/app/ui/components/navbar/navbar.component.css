@@ -1,0 +1,15 @@
+.navbar-header {
+    width: 100%;
+}
+
+.navbar-toggle {
+    float: right;
+    margin: 10px 15px 10px 0;
+    width: 40px;
+    height: 40px;
+
+}
+
+.navbar-header .navbar-toggle {
+    margin: 0;
+}

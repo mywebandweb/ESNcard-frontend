@@ -2,6 +2,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+
 // Componentes
 import { NouSociComponent } from './components/nou-soci/nou-soci.component';
 import { VentaComponent } from './components/venta/venta.component';
@@ -15,9 +16,9 @@ import { NewEventComponent } from './components/new-event/new-event.component';
 
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'soci', pathMatch: 'full' },
+  { path: '', redirectTo: '', pathMatch: 'full' },
   { path: 'soci', component: NouSociComponent },
-  { path: 'venta', component: VentaComponent },
+  { path: 'nueva-venta', component: VentaComponent },
   { path: 'registro', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'mis-datos', component: UserEditComponent },

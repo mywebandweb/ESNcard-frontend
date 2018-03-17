@@ -3,7 +3,12 @@ my-app .main-panel .main-content .card{
     opacity: 0;
     animation-name: fadeIn;
     animation-fill-mode: forwards;
+    overflow: auto !important;
 }
+
+/* .ps {
+    overflow: -webkit-paged-y !important;
+} */
 
 @keyframes fadeIn {
   from {

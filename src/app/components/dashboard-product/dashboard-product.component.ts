@@ -9,6 +9,9 @@ import { UserService } from '../../services/user.service';
 import { Event } from '../../models/event';
 import { Sale } from '../../models/sale';
 
+import * as moment from 'moment/moment';
+
+
 @Component({
   selector: 'dashboard-product',
   templateUrl: './dashboard-product.component.html',
@@ -36,12 +39,39 @@ export class DashboardProductComponent {
     this.title = 'Dashboard';
     this.identity = this._userService.getIdentity();
     this.token = GLOBAL.getToken();
-
+    // this.initialDate = moment(this.event.initial_date).format('DD-MM-YYYY');
   }
 
     ngOnInit(){
-    this.getEvents();
+        this.getEvents();
     }
+
+    showEvent(event) {
+
+        let EXP = moment.utc(event.expiration_date).format('MM-DD-YYYY');
+        let today = moment().format('DD-MM-YYYY');
+        let compareDate = moment(EXP).isBefore(today);
+
+        console.log('Name: ',event.name);
+        console.log(compareDate);
+        console.log('EXP: ', EXP);
+        console.log('Today: ', today);
+
+        if ( compareDate == true ) {
+            event.show = true;
+        } else {
+            event.show = false;
+            _.pull(this.events, event);
+        }
+            // console.log('Name: ',event.name);
+            // console.log('ExpDate: ',event.expiration_date);
+            // console.log('Today: ',today);
+            // console.log('Show: ',event.show);
+
+        // console.log(show);
+    }
+
+
 
     getEvents(){
     this._eventService.getEvents().subscribe(
@@ -56,6 +86,11 @@ export class DashboardProductComponent {
           });
 
           this.events = response.events;
+          for (let event of response.events) {
+              event.initial_date = moment(event.initial_date).format('DD/MM/YYYY');
+              event.expiration_date = moment(event.expiration_date).format('DD-MM-YYYY');
+              this.showEvent(event);
+          }
         }
       },
       error => {
@@ -64,19 +99,60 @@ export class DashboardProductComponent {
     );
     }
 
-    deleteEvent(id){
-    $('#myModal-'+id).modal('hide');
-    this._eventService.deleteEvent(this.token, id).subscribe(
-      response => {
-        if(!response.event){
-          alert('Error en el servidor');
+    getSaleEvent(){
+      this._route.params.forEach((params: Params) => {
+        let id = params['id'];
+
+        this._saleService.getSaleEvent(id).subscribe(
+          response => {
+            if(!response.event){
+
+            }else{
+              this.sale = response.sale;
+            }
+          },
+          error => {
+            console.log(<any>error);
+
+          }
+        );
+      });
+    }
+
+    getEvent(){
+      this._route.params.forEach((params: Params) => {
+        let id = params['id'];
+
+        this._eventService.getEvent(id).subscribe(
+          response => {
+            if(!response.event){
+            }else{
+              this.event = response.event;
+            }
+          },
+          error => {
+            console.log(<any>error);
+          }
+        );
+      });
+    }
+
+    deleteSaleEvent(event){
+
+        let foundEvent = _.find(this.sale.events,{_id:event._id});
+        console.log(foundEvent);
+        console.log(foundEvent._id);
+
+        if(foundEvent.quantity != 0 && foundEvent._id){
+            foundEvent.quantity--;
+            foundEvent.places++;
+            foundEvent.counter = foundEvent.quantity;
+            console.log(foundEvent.counter);
         }
-        this.getEvents();
-      },
-      error => {
-        alert('Error en el servidor');
-      }
-    )
+
+        console.log(event.counter);
+        _.pull(this.sale.events, foundEvent);
+
     }
 
     eventIncrement(event){

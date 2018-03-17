@@ -1,94 +1,140 @@
-<div class="col-lg-12 margin-top">
-  <!--/.Card
-
-  <table class="table table-hover">
-    <thead class="thead-default">
-      <tr>
-        <th>Nombre</th>
-        <th>Día inicial</th>
-        <th>Día Final</th>
-        <th>Plazas</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let event of events">
-        <td>{{event.name}}</td>
-        <td>{{event.initial_date}}</td>
-        <td>{{event.expiration_date}}</td>
-        <td>{{event.places}}</td>
-
-  </table>-->
-
-  <div class="row">
-
-      <div *ngFor="let event of events" class="col-md-6 col-lg-4 card-product
-      d-flex justify-content-center">
-
-        <div class="card" style="width: 18rem;">
-          <div class="card-header">
-            <h5 class="card-title">{{event.name}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted"><i>{{event.initial_date}} - {{event.expiration_date}}</i></h6>
-          </div>
-
-          <div class="card-body inner">
-
-            <p class="card-text">
-              Plazas disponibles: <strong>{{event.places}}</strong><br>
-              Precio con ESNcard: <strong>{{event.price_esncard}}€</strong><br>
-              Precio sin ESNcard: <strong>{{event.price_no_esncard}}€</strong><br>
-              </p>
-              <div class="text-warning">
-                Este evento no dispone de precios sin ESNcard
-              </div>
-
-              <strong>{{event.counter}} tiquet</strong><br>
-
-                <button (click)="eventIncrement(event)" class="btn btn-primary btn-md">
-                    <fa name="cart-plus"></fa>
-                    Añadir
-                </button>
-                <button (click)="eventDecrement(event)" class="btn btn-danger">
-                    <fa name="trash"></fa>
-                    Quitar
-                </button>
-
-
-            <!-- https://developer.telerik.com/topics/web-development/component-event-binding-output-angular-2/ -->
-
-
-
-          </div>
+<div class="main-content" style="margin-top: 40px;">
+    <div class="container-fluid">
+        <div class="alert alert-light" role="alert">
+          Un Erasmus solo puede adquirir un tiquet por venta.
         </div>
-      </div>
-  </div>
-  <div>
-      <a href="#modal_confirm" role="button" data-toggle="modal" class="btn btn-sm btn-danger">
-        <fa name="trash"></fa>
-        Carrito
-      </a>
-      <span> Total Amount: {{sale.total_amount}} € </span>
-        <div class="modal fade" id="modal_confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Carrito</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div *ngFor="let event of sale.events">
-                            {{event.name}}
-                        </div>
-                        <textarea name="feedback" #feedback="ngModel" [(ngModel)]="sale.feedback"></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" (click)="saveSale()">Confirmar Venta</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Atrás</button>
-                    </div>
+
+        <div class="row">
+
+            <div *ngFor="let event of events" class="col-md-6 col-lg-4 card-product
+            d-flex justify-content-center" >
+
+              <div class="card" style="width: 18rem;">
+                <div class="card-header" data-background-color="purple">
+                  <h5 class="card-title" style="font-weight:500;">{{event.name}}</h5>
+                  <h6 class="card-subtitle"><i>{{event.initial_date}} - {{event.expiration_date}}</i></h6>
                 </div>
+
+                <div class="card-body inner">
+
+                  <p class="card-text">
+                    Plazas disponibles: <strong>{{event.places}}</strong><br>
+                    Precio con ESNcard: <strong>{{event.price_esncard}}€</strong><br>
+                    Precio sin ESNcard: <strong>{{event.price_no_esncard}}€</strong><br>
+                    </p>
+                    <!-- <div class="text-warning">
+                      Este evento no dispone de precios sin ESNcard
+                    </div> -->
+
+                    <strong>{{event.counter}} tiquet</strong><br>
+                    <div class="row">
+                        <div style="padding-right:0px;" class="col-md-6">
+                          <button (click)="eventIncrement(event)" class="btn btn-success">
+                              <fa name="cart-plus"></fa>
+                              Añadir
+                          </button>
+                        </div>
+                        <div style="padding-left:0px;" class="col-md-6">
+                          <button (click)="eventDecrement(event)" class="btn btn-danger">
+                              <fa name="trash"></fa>
+                              Quitar
+                          </button>
+                        </div>
+                    </div>
+
+                  <!-- https://developer.telerik.com/topics/web-development/component-event-binding-output-angular-2/ -->
+
+
+
+                </div>
+              </div>
             </div>
         </div>
-  </div>
+        <div>
+
+              <div class="modal fade" id="modal_confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+
+                              <h4 class="modal-title">
+                                  <fa style="margin-right:10px;" name="shopping-cart"></fa>
+                                  Su carrito
+                              </h4>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body">
+
+                                <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">#</th>
+                                      <th scope="col">Nombre</th>
+                                      <th scope="col">Cantidad</th>
+                                      <th scope="col">Precio</th>
+                                      <th scope="col">Acciones</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor="let event of sale.events; let i = index">
+                                          <td>
+                                             {{i + 1}}
+                                          </td>
+                                          <td> {{event.name}} </td>
+                                          <td>{{event.quantity}}</td>
+                                          <td>{{event.price_esncard}} €</td>
+                                          <td>
+                                              <a (click)="deleteSaleEvent(event)" role="button" class="btn btn-sm btn-danger">
+                                                <fa name="trash"></fa>
+                                                Borrar
+                                              </a>
+
+
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                                </table>
+
+
+
+                              <div class="col-md-12 md-form form-sm">
+                                  <div class="form-group form-black label-floating is-empty">
+                                      <textarea mdbActive type="text" class="form-control md-textarea"
+                                      name="feedback" #feedback="ngModel" [(ngModel)]="sale.feedback"></textarea>
+                                      <label class="control-label">¿Quieres añadir algun comentario?</label>
+                                  </div>
+                              </div>
+
+                          </div>
+                          <div class="modal-footer">
+                              <div><strong>Importe Total: {{sale.total_amount}} €</strong></div>
+                              <button type="button" class="btn btn-success" (click)="saveSale()">
+                                  <fa name="check"></fa>
+                                  Confirmar Venta
+                              </button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Atrás</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+        </div>
+    </div>
+
 </div>
+
+<nav class="navbarBot navbar-fixed-bottom   ">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <div style="padding-top: 20px;"><strong>Importe Total: {{sale.total_amount}} €</strong></div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <a style="float:right;" href="#modal_confirm" role="button" data-toggle="modal" class="btn btn-success">
+              <fa name="shopping-cart "></fa>
+              Realizar Venta
+            </a>
+        </div>
+    </div>
+</nav>

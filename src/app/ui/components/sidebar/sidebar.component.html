@@ -2,12 +2,16 @@
 <div class="sidebar-background" style="background-image: url(../assets/img/sidebar-4.jpg)"></div>
 <!-- SideNav slide-out button -->
 <div class="logo">
-    <a href="https://www.creative-tim.com" class="simple-text">
+    <div class="row">
         <div class="logo-img">
-            <img src="/assets/img/angular2-logo-red.png"/>
+            <img src="/assets/img/logo-esngirona.png"/>
         </div>
-        ESN Girona
-    </a>
+        <span class="simple-text">ESN Girona</span>
+        <a type="button" style="background-color:transparent;" class="navbar-toggle" data-toggle="collapse" (click)="sidebarClose()">
+            <span class="sr-only">Toggle navigation</span>
+            <i style="width:20px;" class="fa fa-bars prefix grey-text"></i>
+        </a>
+    </div>
 </div>
 <div class="sidebar-wrapper">
     <div class="nav-container">

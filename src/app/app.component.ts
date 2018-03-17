@@ -70,13 +70,13 @@ export class AppComponent implements OnInit, DoCheck{
     }
 
     ngDoCheck(){
-    this.identity = this._userService.getIdentity();
+        this.identity = this._userService.getIdentity();
     }
 
     logout(){
     localStorage.clear();
     this.identity = null;
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
     }
 
     ngAfterViewInit() {

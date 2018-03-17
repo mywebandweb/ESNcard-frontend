@@ -8,6 +8,7 @@ import { GLOBAL } from '../../services/global';
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
+  styleUrls: ['../../../assets/css/form-green.scss'],
   providers: [UserService]
 })
 
@@ -57,7 +58,7 @@ export class LoginComponent implements OnInit{
                   localStorage.setItem('token', this.token);
                   this.status = 'success';
 
-                  this._router.navigate(['/']);
+                  this._router.navigate(['/dashboard']);
                 }
               },
             )

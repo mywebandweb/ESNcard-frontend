@@ -24,7 +24,7 @@ import { UserService } from '../services/user.service';
     SidebarComponent
   ]
 })
-export class UiModule implements DoCheck {
+export class UiComponent implements DoCheck {
     public identity;
 
     constructor(
@@ -34,5 +34,6 @@ export class UiModule implements DoCheck {
     }
     ngDoCheck(){
         this.identity = this._userService.getIdentity();
+        console.log('identity');
     }
 }

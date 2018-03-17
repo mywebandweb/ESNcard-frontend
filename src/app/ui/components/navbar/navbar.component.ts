@@ -1,27 +1,45 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, DoCheck } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import { UserService } from '../../../services/user.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, DoCheck {
     private listTitles: any[];
     location: Location;
     private toggleButton: any;
     private sidebarVisible: boolean;
+    public identity;
 
-    constructor(location: Location,  private element: ElementRef) {
+    constructor(
+        location: Location,
+        private element: ElementRef,
+        private _userService: UserService,
+        private _router: Router)
+    {
       this.location = location;
           this.sidebarVisible = false;
     }
-
+    ngDoCheck(){
+        this.identity = this._userService.getIdentity();
+    }
     ngOnInit(){
       this.listTitles = ROUTES.filter(listTitle => listTitle);
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+      this.identity = this._userService.getIdentity();
+    }
+
+    logout() {
+        localStorage.clear();
+        this.identity = null;
+        this._router.navigate(['/login']);
     }
 
     sidebarOpen() {

@@ -1,0 +1,49 @@
+h3.card-title {
+    font-size: 1.5em;
+}
+
+.card-footer {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.card-header .card-title {
+    margin-bottom: 0px;
+}
+
+.card-header .fa {
+    display: inline;
+    float: right;
+    font-size: 30px;
+}
+
+.card-header i{
+    display: inline;
+    float: right;
+    font-size: 30px;
+}
+
+.card-header .card-title {
+    display: inline;
+}
+
+.table > thead > tr > th {
+    font-weight: 400;
+}
+
+a.dropdown-item {
+    font-weight: 0;
+    font-size: 14px;
+}
+
+.btn-danger {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.dropdown-item > span{
+    font-weight: 410;
+}
+
+.btn.btn-sm {
+    padding: 12px 12px;
+}

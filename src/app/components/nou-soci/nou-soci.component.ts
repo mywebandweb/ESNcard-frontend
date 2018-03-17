@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import swal from 'sweetalert2';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material';
 
 import { GLOBAL } from '../../services/global';
 import { MemberService } from '../../services/member.service';
@@ -7,11 +10,31 @@ import { UserService } from '../../services/user.service';
 import { UploadService } from '../../services/upload.service';
 import { Member } from '../../models/member';
 
+
+import { AppComponent } from '../../app.component';
+
+import {FormControl} from '@angular/forms';
+
+import {ErrorStateMatcher} from '@angular/material/core';
+
+import * as moment from 'moment';
+
+@NgModule({
+
+  imports: [MatDatepickerModule],
+  providers: [MatNativeDateModule]
+
+})
+
 @Component({
   selector: 'nou-soci',
   templateUrl: './nou-soci.component.html',
-  styleUrls: ['./nou-soci.component.css'],
-  providers: [UserService, MemberService, UploadService]
+  styleUrls: [
+      '../../../assets/css/form-orange.scss',
+      './nou-soci.component.css',
+      '../../../assets/css/matform.scss'
+    ],
+      providers: [UserService, MemberService, UploadService]
 })
 
 export class NouSociComponent implements OnInit {
@@ -24,6 +47,11 @@ export class NouSociComponent implements OnInit {
   public status;
   public is_edit;
   public id;
+
+  genders = [
+      {value: 'Male', viewValue: 'Hombre'},
+      {value: 'Female', viewValue: 'Mujer'}
+    ];
 
 
   constructor(
@@ -42,14 +70,6 @@ export class NouSociComponent implements OnInit {
     this.url = GLOBAL.url;
   }
 
-  addClass(id: any) {
-     this.id = id;
-  }
-
-  removeClass(id: any) {
-     this.id = 0;
-  }
-
   ngOnInit(){
     console.log('member-add component ha sido cargado!!');
   }
@@ -64,6 +84,12 @@ export class NouSociComponent implements OnInit {
         }else{
           this.status = 'success';
           this.member = response.member;
+
+          swal(
+            'Creado!',
+            'Has añadido un nuevo socio.',
+            'success'
+          )
 
           // Subir la imagen del Miembro
           if(!this.filesToUpload){

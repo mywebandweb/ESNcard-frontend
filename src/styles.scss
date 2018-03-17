@@ -1,0 +1,99 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+
+// Define the default theme (same as the example above).
+$candy-app-primary: mat-palette($mat-orange);
+$candy-app-accent:  mat-palette($mat-orange, A200, A100, A400);
+$candy-app-theme:   mat-light-theme($candy-app-primary, $candy-app-accent);
+
+// Include the default theme styles.
+@include angular-material-theme($candy-app-theme);
+
+
+// Define an alternate dark theme.
+$green-primary: mat-palette($mat-green);
+$green-accent:  mat-palette($mat-green);
+$green-warn:    mat-palette($mat-red);
+$green-theme:   mat-dark-theme($green-primary, $green-accent, $green-warn);
+
+// Include the alternative theme styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
+.green-theme {
+    $green-warn: map-get($green-theme, warn);
+  @include angular-material-theme($green-theme);
+
+  .md-form label {
+      color: #AAAAAA;
+  }
+
+  .mat-form-field-underline {
+    background-color: #AAAAAA;
+  }
+
+  .mat-form-field {
+      line-height: 2;
+      display: inline;
+  }
+
+}
+
+
+
+.ps {
+    overflow:visible !important;
+}
+
+// Material Angular Forms
+
+// Server-side rendered matInput with a label attribute but label not shown
+// (used as a pure CSS stand-in for mat-form-field-should-float).
+// Font size to use for the label and subscript text.
+
+
+.mat-form-field-subscript-wrapper {
+  font-size: 24px !important;
+
+
+  // We want the subscript to start at the end of the content box, not the padding box,
+  // so we move it up by the padding amount (adjusted for the smaller font size);
+
+}
+
+.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
+.mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label
+.mat-focused {
+    transform: translateY(-1.28125em) scale(1) perspective(100px) translateZ(0.001px) !important;
+    font-weight: 300;
+}
+
+.md-form label {
+    color: #AAAAAA;
+    font-weight: 400;
+}
+
+.mat-form-field-underline {
+    background-color: #D2D2D2;
+}
+
+.mat-form-field-infix {
+    width: auto !important;
+}
+
+.mat-form-field {
+    line-height: 2;
+    display: block !important;
+}
+
+.mat-form-field-wrapper {
+    margin-top: 10px;
+}
+
+[hidden] {
+  display: none !important;
+}

@@ -1,47 +1,51 @@
-input[type=text]:focus:not([readonly]) + label, input[type=textarea]:focus:not([readonly]) + label,
-input[type=password]:focus:not([readonly]) + label,
-input[type=email]:focus:not([readonly]) + label, input[type=url]:focus:not([readonly]) + label,
-input[type=time]:focus:not([readonly]) + label, input[type=date]:focus:not([readonly]) + label,
-input[type=datetime-local]:focus:not([readonly]) + label, input[type=tel]:focus:not([readonly]) + label,
-input[type=number]:focus:not([readonly]) + label, input[type=search-md]:focus:not([readonly]) + label,
-input[type=search]:focus:not([readonly]) + label, textarea.md-textarea:focus:not([readonly]) + label {
-    color: #9c27b0;
-}
-
-.control-label active {
-    color: #9c27b0;
-}
-
-.form-control:focus{
-        padding-bottom: 0px;
-        background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#FFFFFF, #FFFFFF);
-}
-
-.form-group textarea{
-        padding-bottom: 0px;
-        background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
-}
-
-.form-group.label-static label.control-label, .form-group.label-floating.is-focused label.control-label, .form-group.label-floating:not(.is-empty) label.control-label {
+.dropdown-select {
+    border-color: white;
+    border-bottom-color: #D2D2D2;
+    padding-bottom: 10px;
     font-size: 14px;
+    color: #a2a2a2;
+    /* padding-bottom: 0.2rem; */
+    padding-top: 0.2rem;
+    font-size: 14px;
+    line-height: 0.5;
+    margin-top: 34px;
+    width: 100%;
 }
 
-input[type=text]:focus:not([readonly]), input[type=textarea]:focus:not([readonly]), input[type=password]:focus:not([readonly]),
-input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]),
-input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]),
-input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]),
-input[type=number]:focus:not([readonly]), input[type=search-md]:focus:not([readonly]),
-input[type=search]:focus:not([readonly]), textarea.md-textarea:focus:not([readonly]) {
-    border-bottom: 1px solid #9c27b0;
-    box-shadow: 0 1px 0 0 #9c27b0;
-}
-.form-group.is-focused .form-control {
-    outline: none;
-    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
-    background-size: 100% 2px, 100% 1px;
-    box-shadow: none;
-    transition-duration: 0.3s;
+.mat-form-field-infix {
+    width: auto !important;
 }
 
-.md-form.form-sm input { font-size: 1rem; }
-.md-form {margin-bottom:0px;}
+::placeholder: focus {
+    color: green;
+    opacity: 1; /* Firefox */
+    transform:scale(5,5);
+}
+
+.placeholder {
+    font-size: 14px;
+    transform:scale(2,2);
+}
+
+.placeholder: focus {
+    font-size: 24px;
+    transform:scale(5,5);
+    color: blue;
+}
+input:focus {
+
+}
+
+#MyInput mat-placeholder {
+    font-size: 24px;
+}
+
+.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
+.mat-form-field-can-float .mat-input-server:focus + .mat-form-field-label-wrapper .mat-form-field-label
+.mat-focused {
+    transform: translateY(-1.28125em) scale(1) perspective(100px) translateZ(0.001px) !important;
+}
+
+.mat-form-field-should-float {
+    transform: none !important;
+}

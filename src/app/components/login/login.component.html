@@ -1,4 +1,4 @@
-<div class="col-lg-6">
+<!-- <div class="col-lg-6">
   <h1>{{title}}</h1>
 
   <div class="alert alert-success" *ngIf="status == 'success'">
@@ -27,4 +27,57 @@
 
     <input type="submit" value="Entrar" class="btn btn-success" />
   </form>
+</div> -->
+
+<div class="main-content" style="background-size: auto 900px;background-image: url('../../../assets/img/img4.jpg')">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 offset-lg-3 offset-md-3">
+            <div class="card">
+                <div class="card-header" data-background-color="green">
+                    <h4 class="title">Identifícate</h4>
+                    <p class="category">Econtrarás todo lo que necesitas...</p>
+                </div>
+                <div class="card-content">
+                    <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+
+                        <div class="row">
+                            <div class="col-md-12 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="email" class="form-control"
+                                    name="email" #email="ngModel" [(ngModel)]="user.email" required/>
+                                    <label class="control-label">Correo electrónico</label>
+                                    <!-- <span *ngIf="!email.valid && email.touched">
+                                      El email es obligatorio
+                                    </span> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="password" class="form-control"
+                                    name="password" #password="ngModel" [(ngModel)]="user.password" required/>
+                                    <label class="control-label">Contraseña</label>
+                                    <!-- <span *ngIf="!password.valid && password.touched">
+                                      La contraseña es obligatoria
+                                    </span> -->
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <input id="submit" type="submit" class="btn btn-danger pull-right" data-background-color="green" [disabled]="!loginForm.form.valid" value="Entrar">
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
 </div>

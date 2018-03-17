@@ -1,4 +1,4 @@
-<div class="col-lg-6">
+<!-- <div class="col-lg-6">
 
     <h1>{{ title }}</h1>
 
@@ -39,8 +39,85 @@
             La contraseña es obligatoria
           </span>
         </p>
-        
+
         <input type="submit" value="{{title}}" class="btn btn-primary" [disabled]="!registerForm.form.valid"/>
     </form>
+
+</div> -->
+
+<div class="main-content" style="background-size: auto 900px;background-image: url('../../../assets/img/img4.jpg')">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 offset-lg-3 offset-md-3">
+            <div class="card">
+                <div class="card-header" data-background-color="purple">
+                    <h4 class="title">Regístrate</h4>
+                    <p class="category">Bienvenido Vendedor !!!<br> Tu nueva comunidad...</p>
+                </div>
+                <div class="card-content">
+                    <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+
+                        <div class="row">
+                            <div class="col-md-12 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="text" class="form-control"
+                                    name="name" #name="ngModel" [(ngModel)]="user.name" required/>
+                                    <label class="control-label">Nombre</label>
+                                    <!-- <span *ngIf="!email.valid && email.touched">
+                                      El email es obligatorio
+                                    </span> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="text" class="form-control"
+                                    name="surname" #surname="ngModel" [(ngModel)]="user.surname" required/>
+                                    <label class="control-label">Apellidos</label>
+                                    <!-- <span *ngIf="!password.valid && password.touched">
+                                      La contraseña es obligatoria
+                                    </span> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="email" class="form-control"
+                                    name="email" #email="ngModel" [(ngModel)]="user.email" required/>
+                                    <label class="control-label">Correo electrónico</label>
+                                    <!-- <span *ngIf="!email.valid && email.touched">
+                                      El email es obligatorio
+                                    </span> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="password" class="form-control"
+                                    name="password" #password="ngModel" [(ngModel)]="user.password" required/>
+                                    <label class="control-label">Contraseña</label>
+                                    <!-- <span *ngIf="!password.valid && password.touched">
+                                      La contraseña es obligatoria
+                                    </span> -->
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <input id="submit" type="submit" class="btn btn-danger pull-right" data-background-color="purple" [disabled]="!registerForm.form.valid" value="Enviar">
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
 
 </div>

@@ -17,6 +17,8 @@ export class VentaComponent {
   public members: Member[];
   public token;
   public busqueda;
+  public busquedaNombre;
+  public hide: true;
 
   constructor(
     private _route: ActivatedRoute,
@@ -30,6 +32,10 @@ export class VentaComponent {
 
   ngOnInit(){
     this.getMembers();
+  }
+
+  toggle(joke) {
+      joke.hide = !joke.hide;
   }
 
   getMembers(){

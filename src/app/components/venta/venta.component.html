@@ -1,64 +1,78 @@
-<div class="col-lg-10 margin-top">
-  <h3>Buscar Erasmus por número de ESN</h3>
-  <br>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
 
-  <div class="input-group">
-    <span class="input-group-addon" id="basic-addon3">Buscar</span>
-    <input type="text" class="form-control" [(ngModel)]="busqueda" aria-describedby="basic-addon3">
-  </div>
-  <br>
+                    <div style="margin:0px;"><h3>Buscar Erasmus por número de ESNcard</h3></div>
 
-  <a class="btn btn-sm btn-danger">
-    <fa name="arrow-circle-right"></fa>
-    No encuentras el número de la ESNcard?
-  </a>
-  <br>
+                    <div class="input-group">
 
-  <br>
-  <table class="table table-hover">
-    <thead class="thead-default">
-      <tr>
-        <th>Nombre</th>
-        <th>Apellidos</th>
-        <th>Género</th>
-        <th>ESNcard</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let member of members | searchESNcard: busqueda">
-        <td>{{member.name}}</td>
-        <td>{{member.surname}}</td>
-        <td>{{member.gender}}</td>
-        <td>{{member.numberesncard}}</td>
-        <td>
-          <a [routerLink]="['/member', member._id]" class="btn btn-sm btn-success">
-            <fa name="arrow-circle-right"></fa>
-            Seleccionar
-          </a>
+                      <input style="border-bottom: 0px" type="text" placeholder="Buscar" class="form-control" [(ngModel)]="busqueda" aria-describedby="basic-addon3">
+                    </div>
+
+                    <a class="btn btn-sm btn-danger" (click)="hidden = !hidden">
+                      <fa style="margin-right:10px;" name="arrow-circle-right"></fa>
+                      No encuentras el número de la ESNcard?
+                    </a>
 
 
-          <!-- Modal -->
-          <div class="modal fade" id="myModal-{{member._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">¿Estas seguro?</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <p>Seguro que quieres eliminar el socio <strong>{{member.name}}</strong></p>
-                  <p class="text-warning"><small>Si borras este socio, no podrás recuperarlo</small></p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-danger" (click)="deleteMember(member._id)">Borrar</button>
-                </div>
-              </div>
+
+                    <div [hidden]="!hidden">
+                        <div style="margin:0px; margin-top: 15px;"><h5>Buscar Erasmus por nombre</h5></div>
+                        <input style="border-bottom: 0px" type="text" placeholder="Buscar" class="form-control" [(ngModel)]="busquedaNombre" aria-describedby="basic-addon3">
+                    </div>
+
+                    <table class="table table-hover">
+                      <thead class="thead-default">
+                        <tr>
+                          <th>Nombre</th>
+                          <th>Apellidos</th>
+                          <th>Género</th>
+                          <th>ESNcard</th>
+                          <th>Vendido por:</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let member of members | searchESNcard: busqueda | searchName: busquedaNombre | slice:0:10">
+                          <td>{{member.name}}</td>
+                          <td>{{member.surname}}</td>
+                          <td>{{member.gender}}</td>
+                          <td>{{member.numberesncard}}</td>
+                          <td>{{member.user.name}} {{member.user.surname}}</td>
+                          <td>
+                            <a [routerLink]="['/member', member._id]" class="btn btn-sm btn-success">
+                                <fa style="margin-right:10px;" name="arrow-circle-right"></fa>
+                                Seleccionar
+                            </a>
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal-{{member._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title">¿Estas seguro?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p>Seguro que quieres eliminar el socio <strong>{{member.name}}</strong></p>
+                                    <p class="text-warning"><small>Si borras este socio, no podrás recuperarlo</small></p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-danger" (click)="deleteMember(member._id)">Borrar</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+
+                    </table>
+
             </div>
-          </div>
-        </td>
-
-  </table>
+        </div>
+    </div>
+</div>

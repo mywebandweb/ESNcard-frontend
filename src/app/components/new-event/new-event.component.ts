@@ -1,17 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import swal from 'sweetalert2';
 
 import { GLOBAL } from '../../services/global';
 import { EventService } from '../../services/event.service';
 import { UserService } from '../../services/user.service';
 
 import { Event } from '../../models/event';
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+
+import {FormControl} from '@angular/forms';
+import {MomentDateAdapter} from '@angular/material-moment-adapter';
+
 
 
 @Component({
   selector: 'new-event',
   templateUrl: './new-event.component.html',
-  styleUrls: ['../nou-soci/nou-soci.component.css'],
+  styleUrls: ['../../../assets/css/form-green.scss'],
   providers: [UserService, EventService]
 })
 export class NewEventComponent implements OnInit{
@@ -22,6 +28,7 @@ export class NewEventComponent implements OnInit{
   public url: string;
   public status;
   public is_edit;
+
 
   constructor(
     private _route: ActivatedRoute,
@@ -37,6 +44,8 @@ export class NewEventComponent implements OnInit{
     this.url = GLOBAL.url;
   }
 
+
+
   ngOnInit(){
     console.log('new-event component ha sido cargado!!');
   }
@@ -51,6 +60,12 @@ export class NewEventComponent implements OnInit{
         }else{
           this.status = 'success';
           this.event = response.event;
+
+          swal(
+            'Creado!',
+            'Has añadido un nuevo evento.',
+            'success'
+          )
         }
       },
       error => {

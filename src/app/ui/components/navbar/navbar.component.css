@@ -2,14 +2,42 @@
     width: 100%;
 }
 
+.navbar-item {
+    float:right;
+    margin-top:15px;
+    font-size: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
+    /* border-right: 1px solid; */
+    /* border-left: 1px solid; */
+}
+
+.navbar-item-lr {
+    float: right;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
 .navbar-toggle {
     float: right;
     margin: 10px 15px 10px 0;
-    width: 40px;
-    height: 40px;
-
+    padding-top: 0px;
+    width: 55px;
+    height: 55px;
+    font-size: 18px;
 }
 
 .navbar-header .navbar-toggle {
     margin: 0;
+}
+
+.navbar-login {
+    float: right;
+    padding-top: 15px;
+    color: #333333;
+    font-weight: 400;
+}
+
+.navbar-register {
+    color: #8e24aa !important;
 }

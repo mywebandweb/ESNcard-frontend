@@ -1,0 +1,15 @@
+.navbar-toggle {
+    padding-left: 10px;
+    padding-top: 8px;
+    float: right;
+    position: relative;
+    left: 35px;
+}
+
+.logo-img {
+    padding-left: 15px;
+}
+
+span.simple-text {
+    padding-left: 15px !important;
+}

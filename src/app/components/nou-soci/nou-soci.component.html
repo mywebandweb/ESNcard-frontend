@@ -1,10 +1,10 @@
 <div class="main-content" style="background-size: auto 900px;background-image: url('../../../assets/img/img4.jpg')">
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-10 offset-lg-1">
+        <div class="col-lg-10 offset-lg-1">
             <div class="card">
-                <div class="card-header" data-background-color="purple">
-                    <h4 class="title">Nuevo usuario</h4>
+                <div class="card-header" data-background-color="orange">
+                    <h4 class="title">Nuevo Socio</h4>
                     <p class="category">Completa tu perfil</p>
                 </div>
                 <div class="card-content">
@@ -12,50 +12,56 @@
 
                         <div class="row">
                             <div class="col-md-6 md-form form-sm">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <input mdbActive type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="member.name" required/>
-                                    <label class="control-label">Nombre</label>
-                                </div>
+                                <mat-form-field>
+                                  <input matInput placeholder="Nombre"
+                                  name="name" #name="ngModel" [(ngModel)]="member.name" required>
+                                </mat-form-field>
                             </div>
                             <div class="col-md-6 md-form form-sm">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <input mdbActive type="text" class="form-control" name="surname" #surname="ngModel" [(ngModel)]="member.surname" required/>
-                                    <label class="control-label">Apellidos</label>
-                                </div>
+                                <mat-form-field>
+                                  <input matInput placeholder="Apellidos"
+                                  name="surname" #surname="ngModel" [(ngModel)]="member.surname" required>
+                                </mat-form-field>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-12 md-form form-sm">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <input mdbActive type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="member.email" required/>
-                                    <label class="control-label">Correo electrónico</label>
-                                </div>
+                                <mat-form-field>
+                                  <input matInput placeholder="Correo electrónico"
+                                  name="email" #email="ngModel" [(ngModel)]="member.email" required>
+                                </mat-form-field>
                             </div>
-
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 md-form form-sm">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <input mdbActive type="text" class="form-control" name="birth" #birth="ngModel" [(ngModel)]="member.birth" required/>
-                                    <label class="control-label">Fecha de nacimiento</label>
-                                </div>
+                                <mat-form-field class="example-full-width">
+                                  <mat-placeholder #MyInput class="control-label">Fecha de nacimiento</mat-placeholder>
+                                  <input matInput [matDatepicker]="picker"
+                                  name="birth" #birth="ngModel" [(ngModel)]="member.birth" required/>
+                                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-datepicker touchUi="true" #picker></mat-datepicker>
+                                </mat-form-field>
                             </div>
                             <div class="col-md-6 md-form form-sm">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <input mdbActive type="text" class="form-control" name="gender" #gender="ngModel" [(ngModel)]="member.gender" required/>
-                                    <label class="control-label">Género</label>
-                                </div>
+                                <mat-form-field>
+                                  <mat-select class="mat-select" placeholder="Género"
+                                  name="gender" #gender="ngModel" [(ngModel)]="member.gender" required>
+                                    <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                                      {{ gender.viewValue }}
+                                    </mat-option>
+                                  </mat-select>
+                                </mat-form-field>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-12 md-form form-sm">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <input mdbActive type="text" class="form-control" name="numberesncard" #numberesncard="ngModel" [(ngModel)]="member.numberesncard" required/>
-                                    <label class="control-label">Nº ESNcard</label>
-                                </div>
+                                <mat-form-field>
+                                  <input matInput placeholder="Nº ESNcard"
+                                  name="numberesncard" #numberesncard="ngModel" [(ngModel)]="member.numberesncard" required>
+                                </mat-form-field>
                             </div>
                         </div>
 
@@ -71,7 +77,7 @@
                             <div class="col-md-12" style="padding-left: 15px; margin-top: 15px;">
                               <input type="file" id="file" style="display:none;"
                                (change)="fileChangeEvent($event)" />
-                              <label style="color:#9c27b0;" for="file">
+                              <label style="color:#fb8c00;" for="file">
                                 <fa name="upload"></fa>
                                 <span style="margin-left: 10px;">Subir imagen de perfil</span>
                               </label>
@@ -91,15 +97,17 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <input style="width:15px; height:15px;" data-toggle="toggle" type="checkbox" autocomplete="off" checked name="conditions" #conditions="ngModel" [(ngModel)]="member.conditions" required/>
-                                    <label>Acepto las condiciones de uso</label>
-                                </div>
+                                <mat-checkbox
+                                name="conditions" #conditions="ngModel" [(ngModel)]="member.conditions" required>
+                                    Acepto las condiciones de uso
+                                </mat-checkbox>
                             </div>
+
+
                         </div>
 
 
-                        <button type="submit" class="btn btn-danger pull-right" data-background-color="purple">Registrar Usuario</button>
+                        <button type="submit" class="btn btn-danger pull-right" data-background-color="orange" [disabled]="!newMemberForm.form.valid">Registrar Usuario</button>
                         <div class="clearfix"></div>
                     </form>
                 </div>

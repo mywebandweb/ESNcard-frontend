@@ -1,0 +1,238 @@
+<div class="main-content" style="margin-top: 40px;">
+    <div class="container-fluid">
+
+
+        <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header" data-background-color="orange">
+                            <i class="material-icons">
+                                person
+                            </i>
+                        </div>
+                        <div class="card-content">
+                            <p class="category">Socios</p>
+                            <h3 class="card-title"> {{members.length}} </h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                 <i class="fa fa-address-book fa-lg"></i>
+                                 Sigamos creciendo!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header" data-background-color="red">
+                            <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-content">
+                            <p class="category">Ventas</p>
+                            <h3 class="card-title"> {{sales.length}} </h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                                Gracias vendedores!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header" data-background-color="green">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-content">
+                            <p class="category">Eventos</p>
+                            <h3 class="card-title"> {{ events.length }} </h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">date_range</i> Eventos ESN
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header" data-background-color="purple">
+                            <i class="fa fa-line-chart" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-content">
+                            <p class="category">Recaptado</p>
+                            <h3 class="card-title">
+                                -- €
+                            </h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">update</i> Reinvierte, crece...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+                <div class="card">
+                    <div class="card-header" data-background-color="orange">
+                        <h4 class="card-title">Últimos socios registrados</h4>
+                        <i class="material-icons">
+                            person
+                        </i>
+                    </div>
+                    <div class="card-content">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-hover">
+                                  <thead class="thead-default">
+                                    <tr>
+                                      <th>Nombre</th>
+                                      <th>Apellidos</th>
+                                      <th>ESNcard</th>
+                                      <th>Correo electrónico</th>
+                                      <th>Acciones</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let member of members | reverse | slice:0:3">
+                                      <td>{{member.name}}</td>
+                                      <td>{{member.surname}}</td>
+                                      <td>{{member.numberesncard}}</td>
+                                      <td>{{member.email}}</td>
+                                      <td>
+                                        <a [routerLink]="['/member', member._id]" class="btn btn-sm btn-success">
+                                          <fa name="eye"></fa>
+                                          <!-- Ver -->
+                                        </a>
+                                        <a [routerLink]="['/edit-member', member._id]" class="btn btn-sm btn-primary">
+                                          <fa name="pencil"></fa>
+                                          <!-- Editar -->
+                                        </a>
+                                        <a role="button" data-toggle="modal" class="btn btn-sm btn-danger" (click)="swalSubmitMember(member._id)">
+                                          <fa name="trash"></fa>
+                                          <!-- Borrar -->
+                                        </a>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="myModal-{{member._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <h5 class="modal-title">¿Estas seguro?</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                <p>Seguro que quieres eliminar el socio <strong>{{member.name}}</strong></p>
+                                                <p class="text-warning"><small>Si borras este socio, no podrás recuperarlo</small></p>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-danger" (click)="deleteMember(member._id)">Borrar</button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </td>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="card-title">Últimas ventas realizadas</h4>
+                        <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                    </div>
+                    <div class="card-content">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-hover">
+                                  <thead class="thead-default">
+                                    <tr>
+                                      <th>Nombre</th>
+                                      <th>Cantidad</th>
+                                      <th>Importe Total</th>
+                                      <th>Vendido por:</th>
+                                      <th>Acciones</th>
+
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let sale of sales | reverse |slice:0:10">
+                                        <td>
+                                            <div *ngIf="sale.events.length == 1">
+                                                <div *ngFor="let event of sale.events">{{event.name}}</div>
+                                            </div>
+                                            <div *ngIf="sale.events.length > 1">
+                                                <!-- Basic dropdown -->
+                                                <div class="btn-group">
+                                                        <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Eventos</button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" *ngFor="let event of sale.events">
+                                                                <span>{{event.name}}:</span> {{ event.price_esncard }} €
+                                                            </a>
+                                                        </div>
+                                                </div>
+                                            </div>
+
+                                        </td>
+
+                                      <td>{{sale.events.length}}</td>
+                                      <td>{{sale.total_amount}} €</td>
+                                      <td>{{sale.user.name}} {{sale.user.surname}}</td>
+                                      <td>
+                                          <a role="button" data-toggle="modal" class="btn btn-sm btn-danger" (click)="swalSubmitSale(sale._id)">
+                                            <fa name="trash"></fa>
+                                            <!-- Borrar -->
+                                          </a>
+
+                                          <!-- Modal -->
+                                          <div class="modal fade" id="myModal-{{sale._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title">¿Estas seguro?</h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                  <p>Seguro que quieres eliminar la venta</p>
+                                                  <p class="text-warning"><small>Si borras este socio, no podrás recuperarlo</small></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                  <button type="button" class="btn btn-danger" (click)="deleteMember(member._id)">Borrar</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                      </td>
+
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+    </div>
+
+</div>

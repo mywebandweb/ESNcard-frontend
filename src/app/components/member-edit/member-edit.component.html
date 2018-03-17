@@ -1,0 +1,104 @@
+<div class="main-content" style="background-size: auto 900px;background-image: url('../../../assets/img/img4.jpg')">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 offset-lg-1">
+            <div class="card">
+                <div class="card-header" data-background-color="orange">
+                    <h4 class="title">Editar contenido de {{ member.name }} {{ member.surname }}</h4>
+                    <p class="category">Completa el perfil</p>
+                </div>
+                <div class="card-content">
+                    <form #formMemberEditForm="ngForm" (ngSubmit)="onSubmit()">
+
+                        <div class="row">
+                            <div class="col-md-6 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="member.name" required/>
+                                    <label class="control-label">Nombre</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="text" class="form-control" name="surname" #surname="ngModel" [(ngModel)]="member.surname" required/>
+                                    <label class="control-label">Apellidos</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="member.email" required/>
+                                    <label class="control-label">Correo electrónico</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="text" class="form-control" name="birth" #birth="ngModel" [(ngModel)]="member.birth" required/>
+                                    <label class="control-label">Fecha de nacimiento</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="text" class="form-control" name="gender" #gender="ngModel" [(ngModel)]="member.gender" required/>
+                                    <label class="control-label">Género</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="text" class="form-control" name="numberesncard" #numberesncard="ngModel" [(ngModel)]="member.numberesncard" required/>
+                                    <label class="control-label">Nº ESNcard</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div *ngIf="is_edit && member.image">
+                              <div class="image_for_edit">
+                                <img src="{{ url + 'get-image-member/' + member.image }}"/>
+                              </div>
+                            </div>
+
+                            <br>
+                            <div class="col-md-12" style="padding-left: 15px; margin-top: 15px;">
+                              <input type="file" id="file" style="display:none;"
+                               (change)="fileChangeEvent($event)" />
+                              <label style="color:#fb8c00;" for="file">
+                                <fa name="upload"></fa>
+                                <span style="margin-left: 10px;">Subir imagen de perfil</span>
+                              </label>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 md-form form-sm">
+                                <div class="form-group form-black label-floating is-empty">
+                                    <textarea mdbActive type="text" class="form-control md-textarea"  name="comments" #comments="ngModel" [(ngModel)]="member.comments" rows="5"></textarea>
+                                    <label class="control-label">Comentarios, alergias, intolerancias, etc.</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-danger pull-right" data-background-color="orange">Actualizar Socio</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+</div>

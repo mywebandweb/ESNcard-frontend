@@ -1,105 +1,86 @@
 <div class="main-content" style="background-size: auto 900px;background-image: url('../../../assets/img/img4.jpg')">
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-10 offset-lg-1">
+        <div class="col-lg-10 offset-lg-1">
             <div class="card">
-                <div class="card-header" data-background-color="purple">
-                    <h4 class="title">Nuevo evento</h4>
+                <div class="card-header" data-background-color="green">
+                    <h4 class="title">Nuevo Evento</h4>
                     <p class="category">Completa toda la información del evento</p>
                 </div>
                 <div class="card-content">
-                    <form #newMemberForm="ngForm" (ngSubmit)="onSubmit()">
+                    <form #newEventForm="ngForm" (ngSubmit)="onSubmit()" class="green-theme">
 
                         <div class="row">
                             <div class="col-md-6 md-form form-sm">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <input mdbActive type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="member.name" required/>
-                                    <label class="control-label">Nombre</label>
-                                </div>
+                                <mat-form-field>
+                                  <input matInput placeholder="Nombre del Evento"
+                                  name="name" #name="ngModel" [(ngModel)]="event.name" required>
+                                </mat-form-field>
                             </div>
                             <div class="col-md-6 md-form form-sm">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <input mdbActive type="text" class="form-control" name="surname" #surname="ngModel" [(ngModel)]="member.surname" required/>
-                                    <label class="control-label">Apellidos</label>
-                                </div>
+                                <mat-form-field>
+                                  <input matInput placeholder="Número máximo de plazas"
+                                  name="places" #places="ngModel" [(ngModel)]="event.places" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 md-form form-sm">
+                                <mat-form-field>
+                                  <mat-placeholder>Día inicial del evento</mat-placeholder>
+                                  <input matInput [matDatepicker]="picker"
+                                  name="initial_date" #initial_date="ngModel" [(ngModel)]="event.initial_date" required>
+                                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-datepicker touchUi="true" #picker></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6 md-form form-sm">
+                                <mat-form-field>
+                                  <mat-placeholder>Día final del evento</mat-placeholder>
+                                  <input matInput [matDatepicker]="picker2"
+                                  name="expiration_date" #expiration_date="ngModel" [(ngModel)]="event.expiration_date" required>
+                                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                  <mat-datepicker touchUi="true" #picker2></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 md-form form-sm">
+                                <!-- <div class="form-group form-black label-floating is-empty">
+                                    <input mdbActive type="text" class="form-control"
+                                    name="price_esncard" #price_esncard="ngModel" [(ngModel)]="event.price_esncard" required/>
+                                    <label class="control-label">Precio con ESNcard</label>
+                                </div> -->
+                                <mat-form-field>
+                                  <input matInput placeholder="Precio con ESNcard"
+                                  name="price_esncard" #price_esncard="ngModel" [(ngModel)]="event.price_esncard" required>
+                                  <span matSuffix>€&nbsp;</span>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6 md-form form-sm">
+                                <mat-form-field>
+                                  <input matInput placeholder="Precio sin ESNcard"
+                                  name="price_no_esncard" #price_no_esncard="ngModel" [(ngModel)]="event.price_no_esncard" required>
+                                  <span matSuffix>€&nbsp;</span>
+                                </mat-form-field>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-12 md-form form-sm">
                                 <div class="form-group form-black label-floating is-empty">
-                                    <input mdbActive type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="member.email" required/>
-                                    <label class="control-label">Correo electrónico</label>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 md-form form-sm">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <input mdbActive type="text" class="form-control" name="birth" #birth="ngModel" [(ngModel)]="member.birth" required/>
-                                    <label class="control-label">Fecha de nacimiento</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 md-form form-sm">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <input mdbActive type="text" class="form-control" name="gender" #gender="ngModel" [(ngModel)]="member.gender" required/>
-                                    <label class="control-label">Género</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12 md-form form-sm">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <input mdbActive type="text" class="form-control" name="numberesncard" #numberesncard="ngModel" [(ngModel)]="member.numberesncard" required/>
-                                    <label class="control-label">Nº ESNcard</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-
-                            <div *ngIf="is_edit && member.image">
-                              <div class="image_for_edit">
-                                <img src="{{ url + 'get-image-member/' + member.image }}"/>
-                              </div>
-                            </div>
-
-                            <br>
-                            <div class="col-md-12" style="padding-left: 15px; margin-top: 15px;">
-                              <input type="file" id="file" style="display:none;"
-                               (change)="fileChangeEvent($event)" />
-                              <label style="color:#9c27b0;" for="file">
-                                <fa name="upload"></fa>
-                                <span style="margin-left: 10px;">Subir imagen de perfil</span>
-                              </label>
-                            </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12 md-form form-sm">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <textarea mdbActive type="text" class="form-control md-textarea"  name="comments" #comments="ngModel" [(ngModel)]="member.comments" rows="5"></textarea>
-                                    <label class="control-label">Comentarios, alergias, intolerancias, etc.</label>
+                                    <textarea mdbActive type="text" class="form-control md-textarea"
+                                    name="comments" #comments="ngModel" [(ngModel)]="event.comments" rows="5"></textarea>
+                                    <label class="control-label">Comentarios</label>
                                 </div>
                             </div>
                         </div>
 
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <input style="width:15px; height:15px;" data-toggle="toggle" type="checkbox" autocomplete="off" checked name="conditions" #conditions="ngModel" [(ngModel)]="member.conditions" required/>
-                                    <label>Acepto las condiciones de uso</label>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <button type="submit" class="btn btn-danger pull-right" data-background-color="purple">Registrar Usuario</button>
+                        <input id="submit" type="submit" class="btn btn-danger pull-right" data-background-color="green" [disabled]="!newEventForm.form.valid" value="Añadir Evento">
                         <div class="clearfix"></div>
                     </form>
                 </div>

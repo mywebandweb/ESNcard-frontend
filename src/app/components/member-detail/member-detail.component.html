@@ -1,17 +1,36 @@
-<div class="member-box col-lg-11" *ngIf="member">
-  <div id="member-head-card" class="col-lg-4 pull-left">
-    <img src="{{url + 'get-image-member/' +member.image}}" style="width:300px;"/>
-  </div>
-  <div class="member-data col-lg-7 pull-left">
-    <h1>{{member.name}}</h1>
-    <p>{{member.user.name + ' ' + member.user.surname}}</p>
-    <p>{{member.year}}</p>
-    <p>{{member.description}}</p>
+<div class="main-content"   style="height: 50%;">
+    <div class="container-fluid">
+        <div class="row">
 
-    <a [routerLink]="['/dashboard-product']" class="btn btn-sm btn-success">
-      <fa name="arrow-circle-right"></fa>
-      Confirmo ser este usuario
-    </a>
 
-  </div>
+                <div class="col-md-4">
+                    <h3>Miembro</h3>
+                    <figure class="figure">
+                        <img data-src="{{url + 'get-image-member/' +member.image}}" class="figure-img img-fluid" style="width:300px;"/>
+                        <i>Vendido por {{member.user.name + ' ' + member.user.surname}}</i>
+                    </figure>
+                </div>
+                <div class="col-md-8" *ngIf="member">
+
+
+                      <div class="member-data col-lg-7 pull-left">
+
+                        <h3>{{member.name}} {{member.surname}}</h3>
+                        <div>ESNcard: {{member.numberesncard}}</div><hr>
+                        <div>Fecha de nacimiento: {{member.birth}}</div>
+                        <div>Correo electrónico: {{member.email}}</div>
+                        <div>Sexo: {{member.gender}}</div><hr>
+                        <p>Comentarios: {{member.comments}}</p>
+
+                        <a [routerLink]="['/dashboard-product']" class="btn btn-sm btn-success">
+                          <fa style="margin-right:7px;" name="arrow-circle-right"></fa>
+                          Confirmo ser este usuario
+                        </a>
+
+                      </div>
+
+                </div>
+
+        </div>
+    </div>
 </div>
